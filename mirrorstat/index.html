@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MirrorStat TCG | In-Game Stat & Effect Tracker</title>
+
+<meta name="description"
+content="MirrorStat TCG is an in-game stat and effect tracker for tabletop card games on iPhone and iPad.">
+
+<style>
+
+:root {
+    --bg: #05040c;
+    --surface: rgba(17, 13, 32, .82);
+    --surface2: rgba(23, 17, 43, .90);
+    --text: #ffffff;
+    --muted: #bbb6cc;
+    --pink: #ff28c8;
+    --purple: #a946ff;
+    --blue: #27c9ff;
+    --cyan: #25f5e5;
+    --yellow: #ffe44d;
+    --orange: #ff8a25;
+
+    --rainbow: linear-gradient(
+        90deg,
+        #ff28c8,
+        #a946ff,
+        #27c9ff,
+        #25f5e5,
+        #ffe44d,
+        #ff8a25,
+        #ff28c8
+    );
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 5%,
+            rgba(255, 40, 200, .14),
+            transparent 25%),
+
+        radial-gradient(circle at 85% 15%,
+            rgba(39, 201, 255, .14),
+            transparent 28%),
+
+        radial-gradient(circle at 50% 60%,
+            rgba(169, 70, 255, .08),
+            transparent 35%),
+
+        var(--bg);
+
+    color: var(--text);
+    line-height: 1.65;
+}
+
+a {
+    color: inherit;
+}
+
+section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 90px 7%;
+}
+
+
+/* NAV */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 7%;
+
+    background: rgba(5, 4, 12, .88);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.brand img {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #d5d1df;
+    font-weight: 650;
+    font-size: .9rem;
+}
+
+.nav-links a:hover {
+    color: var(--cyan);
+}
+
+
+/* HERO */
+
+.hero {
+    max-width: 1400px;
+    margin: auto;
+    padding: 45px 5% 75px;
+    text-align: center;
+}
+
+.hero-banner-wrap {
+    padding: 3px;
+
+    background: var(--rainbow);
+
+    border-radius: 27px;
+
+    box-shadow:
+        0 0 45px rgba(255,40,200,.18),
+        0 0 70px rgba(39,201,255,.12);
+}
+
+.hero-banner {
+    display: block;
+    width: 100%;
+
+    border-radius: 24px;
+}
+
+.hero-copy {
+    max-width: 850px;
+    margin: 45px auto 0;
+}
+
+.hero-icon {
+    width: 115px;
+    height: 115px;
+
+    border-radius: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 0 35px rgba(255,40,200,.28),
+        0 0 50px rgba(39,201,255,.20);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 14px;
+}
+
+.rainbow-text {
+    background: var(--rainbow);
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.tagline {
+    font-size: clamp(1.25rem, 3vw, 1.9rem);
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+.hero-description {
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 27px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 12px 20px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    background: rgba(255,255,255,.06);
+
+    text-decoration: none;
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    border-color: var(--cyan);
+}
+
+.primary {
+    background: var(--rainbow);
+
+    color: #100a18;
+
+    border: none;
+}
+
+.disabled {
+    color: #8c8799;
+    cursor: default;
+}
+
+
+/* TITLES */
+
+.section-title {
+    text-align: center;
+
+    font-size: clamp(2rem, 5vw, 3.2rem);
+
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    max-width: 720px;
+
+    margin: 0 auto 42px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+
+/* FEATURE GRID */
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.feature {
+    position: relative;
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,.11);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,22,51,.92),
+            rgba(10,8,20,.95)
+        );
+
+    overflow: hidden;
+}
+
+.feature::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 3px;
+
+    background: var(--rainbow);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.feature h3 {
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: var(--muted);
+}
+
+
+/* PRO */
+
+.pro-box {
+    padding: 4px;
+
+    border-radius: 27px;
+
+    background: var(--rainbow);
+
+    box-shadow:
+        0 0 55px rgba(169,70,255,.14);
+}
+
+.pro-inner {
+    padding: 45px;
+
+    border-radius: 23px;
+
+    background:
+        radial-gradient(circle at 15% 10%,
+            rgba(255,40,200,.14),
+            transparent 30%),
+
+        radial-gradient(circle at 85% 90%,
+            rgba(39,201,255,.14),
+            transparent 30%),
+
+        #090712;
+}
+
+.pro-inner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.pro-inner > p {
+    color: var(--muted);
+    max-width: 700px;
+}
+
+.pro-features {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.pro-feature {
+    padding: 15px 17px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,.11);
+
+    background: rgba(255,255,255,.045);
+}
+
+
+/* DEVICE */
+
+.device-box {
+    text-align: center;
+
+    padding: 45px;
+
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 22px;
+
+    background: var(--surface);
+}
+
+.device-icons {
+    font-size: 3rem;
+
+    margin-bottom: 12px;
+}
+
+.device-box p {
+    color: var(--muted);
+}
+
+
+/* SUPPORT */
+
+.support {
+    text-align: center;
+
+    padding: 55px 30px;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,40,200,.08),
+            rgba(169,70,255,.08),
+            rgba(39,201,255,.08)
+        );
+}
+
+.support p {
+    color: var(--muted);
+
+    max-width: 650px;
+
+    margin: 10px auto;
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: #858091;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+
+footer a {
+    color: #bbb5ca;
+
+    text-decoration: none;
+
+    margin: 0 7px;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 850px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .feature-grid,
+    .pro-features {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 25px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .pro-inner {
+        padding: 30px 22px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<nav>
+
+<a class="brand" href="#home">
+
+<img src="MirrorStatIcon.png" alt="MirrorStat icon">
+
+<span>MirrorStat TCG</span>
+
+</a>
+
+
+<div class="nav-links">
+
+<a href="#features">Features</a>
+<a href="#pro">MirrorStat Pro</a>
+<a href="#support">Support</a>
+<a href="privacy.html">Privacy</a>
+
+</div>
+
+</nav>
+
+
+
+<header class="hero" id="home">
+
+
+<div class="hero-banner-wrap">
+
+<img
+class="hero-banner"
+src="MirrorStatBanner.png"
+alt="MirrorStat TCG">
+
+</div>
+
+
+<div class="hero-copy">
+
+
+<img
+class="hero-icon"
+src="MirrorStatIcon.png"
+alt="MirrorStat TCG app icon">
+
+
+<h1 class="rainbow-text">
+MirrorStat TCG
+</h1>
+
+
+<div class="tagline">
+In-Game Stat & Effect Tracker
+</div>
+
+
+<p class="hero-description">
+
+Keep the game moving without losing track of the details.
+MirrorStat TCG gives tabletop card game players a fast,
+customizable way to manage stats, effects, counters,
+and game state directly from iPhone and iPad.
+
+</p>
+
+
+<div class="buttons">
+
+<span class="button primary disabled">
+ App Store — Coming Soon
+</span>
+
+<a class="button" href="#features">
+Explore Features
+</a>
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+<section id="features">
+
+<h2 class="section-title rainbow-text">
+Built for the Game
+</h2>
+
+<p class="section-subtitle">
+
+Spend less time keeping track of numbers and more time
+playing. MirrorStat is designed around quick interactions
+during real tabletop matches.
+
+</p>
+
+
+<div class="feature-grid">
+
+
+<div class="feature">
+
+<div class="feature-icon">📊</div>
+
+<h3>Flexible Stat Tracking</h3>
+
+<p>
+
+Track and update card values quickly during gameplay,
+including support for different stat configurations.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<div class="feature-icon">✨</div>
+
+<h3>Special Effects</h3>
+
+<p>
+
+Keep temporary and ongoing effects visible so important
+changes don't get lost during a match.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<div class="feature-icon">⚡</div>
+
+<h3>Quick Controls</h3>
+
+<p>
+
+Use fast value adjustments and gameplay controls designed
+to minimize interruptions at the table.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<div class="feature-icon">🎨</div>
+
+<h3>Customizable Layouts</h3>
+
+<p>
+
+Personalize the tracking experience with layouts and
+visual options that fit your game.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<div class="feature-icon">📱</div>
+
+<h3>iPhone Gameplay</h3>
+
+<p>
+
+A streamlined single-player tracking experience designed
+for convenient play on iPhone.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<div class="feature-icon">↔️</div>
+
+<h3>iPad Table Mode</h3>
+
+<p>
+
+Use the larger iPad display for a two-player tabletop
+experience with opposing player views.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section id="pro">
+
+<div class="pro-box">
+
+<div class="pro-inner">
+
+<h2 class="rainbow-text">
+✨ MirrorStat Pro
+</h2>
+
+<p>
+
+Unlock additional customization and faster gameplay tools
+with a one-time MirrorStat Pro upgrade.
+
+</p>
+
+
+<div class="pro-features">
+
+<div class="pro-feature">
+💾 Saved Layouts
+</div>
+
+<div class="pro-feature">
+⚡ Quick Set Values
+</div>
+
+<div class="pro-feature">
+✨ Quick Effects
+</div>
+
+<div class="pro-feature">
+🌈 Additional Themes
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="device-box">
+
+<div class="device-icons">
+📱 + 📲
+</div>
+
+<h2>
+Designed for iPhone & iPad
+</h2>
+
+<p>
+
+MirrorStat TCG is built for Apple's mobile devices with
+layouts designed around real tabletop gameplay.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<section id="support">
+
+<div class="support">
+
+<h2 class="section-title rainbow-text">
+Need Help?
+</h2>
+
+<p>
+
+Questions, feedback, or support requests for MirrorStat TCG
+are welcome.
+
+</p>
+
+
+<div class="buttons">
+
+<a
+class="button primary"
+href="mailto:haleysapp.mail@gmail.com?subject=MirrorStat%20TCG%20Support">
+
+Contact Support
+
+</a>
+
+
+<a
+class="button"
+href="privacy.html">
+
+Privacy Policy
+
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2026 MirrorStat TCG
+</p>
+
+<p>
+<a href="../">Haley Sapp</a>
+•
+<a href="privacy.html">Privacy Policy</a>
+•
+<a href="mailto:haleysapp.mail@gmail.com">Support</a>
+</p>
+
+</footer>
+
+
+</body>
+</html>
