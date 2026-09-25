@@ -4,292 +4,1079 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Haley Sapp | Software Developer & AI</title>
+    <title>Haley Sapp | Computer Science • AI • Software Development</title>
+
+    <meta name="description"
+          content="Portfolio of Haley Sapp, a Computer Science student specializing in Artificial Intelligence, software development, computer vision, and iOS development.">
 
     <style>
+        :root {
+            --text: #20243a;
+            --muted: #667085;
+            --white: #ffffff;
+
+            --pink: #f6a9d7;
+            --purple: #c5a6ff;
+            --blue: #9ccfff;
+            --mint: #a8ead7;
+            --yellow: #ffe79a;
+
+            --border: #e9e5f4;
+            --shadow: 0 12px 35px rgba(89, 78, 130, 0.10);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: #0d1117;
-            color: #e6edf3;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(circle at 5% 10%,
+                    rgba(246,169,215,.22), transparent 25%),
+                radial-gradient(circle at 90% 12%,
+                    rgba(156,207,255,.24), transparent 28%),
+                radial-gradient(circle at 50% 85%,
+                    rgba(168,234,215,.20), transparent 30%),
+                #fffefe;
+
             line-height: 1.6;
         }
 
+        a {
+            color: inherit;
+        }
+
+
+        /* ================================
+           NAVIGATION
+        ================================= */
+
         nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 22px 8%;
-            border-bottom: 1px solid #30363d;
+
+            padding: 18px 7%;
+
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(16px);
+
+            border-bottom: 1px solid rgba(220,215,235,.75);
         }
 
-        nav h2 {
-            color: #ffffff;
-        }
-
-        nav a {
-            color: #c9d1d9;
+        .logo {
+            font-size: 1.55rem;
+            font-weight: 800;
             text-decoration: none;
-            margin-left: 24px;
         }
 
-        nav a:hover {
-            color: #a78bfa;
+        .rainbow-text {
+            background: linear-gradient(
+                90deg,
+                #ef8bc5,
+                #b494f4,
+                #79bdf2,
+                #7fd9c1,
+                #f1cf70
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: .95rem;
+            font-weight: 600;
+            color: #4c5067;
+        }
+
+        .nav-links a:hover {
+            color: #a374df;
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
 
         .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 10%;
-            max-width: 1200px;
+            max-width: 1180px;
+            min-height: 72vh;
+
             margin: auto;
+            padding: 110px 7% 80px;
+
+            display: flex;
+            align-items: center;
         }
 
-        .hero p.intro {
-            color: #a78bfa;
-            font-weight: 600;
-            margin-bottom: 10px;
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+
+            padding: 8px 15px;
+            margin-bottom: 22px;
+
+            border-radius: 100px;
+
+            background: linear-gradient(
+                90deg,
+                rgba(246,169,215,.28),
+                rgba(197,166,255,.25),
+                rgba(156,207,255,.28)
+            );
+
+            font-size: .9rem;
+            font-weight: 700;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1;
-            margin-bottom: 20px;
+            font-size: clamp(3.5rem, 8vw, 6.8rem);
+            line-height: .95;
+            letter-spacing: -4px;
+            margin-bottom: 24px;
         }
 
         .hero h2 {
-            font-size: clamp(1.5rem, 4vw, 2.7rem);
-            color: #8b949e;
-            margin-bottom: 25px;
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            font-weight: 600;
+            color: #60677c;
+
+            margin-bottom: 24px;
         }
 
-        .hero .description {
-            max-width: 700px;
-            color: #b1bac4;
-            font-size: 1.1rem;
+        .hero-description {
+            max-width: 730px;
+
+            font-size: 1.13rem;
+            color: var(--muted);
+        }
+
+        .buttons {
+            margin-top: 32px;
+
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .button {
             display: inline-block;
-            margin-top: 30px;
-            margin-right: 12px;
-            padding: 12px 20px;
-            border: 1px solid #a78bfa;
-            border-radius: 8px;
-            color: #a78bfa;
+
+            padding: 12px 21px;
+
+            border-radius: 11px;
+            border: 1px solid #d8d1eb;
+
+            background: white;
+
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+
+            box-shadow: 0 5px 15px rgba(70,60,110,.06);
+
+            transition: .2s;
         }
 
         .button:hover {
-            background: rgba(167, 139, 250, 0.12);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
+
+        .button-primary {
+            border: none;
+
+            background: linear-gradient(
+                90deg,
+                #f2a6d2,
+                #c0a4f6,
+                #93cdf6
+            );
+
+            color: #25213b;
+        }
+
+
+        /* ================================
+           GENERAL SECTIONS
+        ================================= */
 
         section {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: auto;
-            padding: 80px 8%;
+            padding: 80px 7%;
         }
 
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .project {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 25px;
-        }
-
-        .project h3 {
-            color: #ffffff;
+        .section-title {
+            font-size: 2.2rem;
             margin-bottom: 10px;
         }
 
-        .project p {
-            color: #b1bac4;
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 35px;
+            max-width: 750px;
         }
 
-        .tech {
-            color: #a78bfa !important;
+
+        /* ================================
+           PROJECTS
+        ================================= */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(255,255,255,.90);
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow: var(--shadow);
+
+            transition: .25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .project-icon {
+            font-size: 2.1rem;
+            margin-bottom: 14px;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+
+            border-radius: 100px;
+
+            background: #f4f1fb;
+
+            font-size: .79rem;
+            font-weight: 650;
+
+            color: #5f5875;
+        }
+
+        .project-actions {
+            margin-top: 22px;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .small-button {
+            padding: 9px 14px;
+
+            border-radius: 9px;
+            border: 1px solid #ddd6ef;
+
+            background: white;
+
+            text-decoration: none;
+
+            font-size: .88rem;
+            font-weight: 700;
+        }
+
+        .coming-soon {
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            background: #f7f5fa;
+
+            color: #8b8499;
+
+            font-size: .88rem;
+            font-weight: 650;
+        }
+
+
+        /* individual pastel cards */
+
+        .hurricane {
+            border-top: 5px solid var(--blue);
+        }
+
+        .chatbot {
+            border-top: 5px solid var(--mint);
+        }
+
+        .mirrorstat {
+            border-top: 5px solid var(--purple);
+        }
+
+        .magicletters {
+            border-top: 5px solid var(--pink);
+        }
+
+
+        /* ================================
+           NASA
+        ================================= */
+
+        .nasa-section {
+            display: grid;
+
+            grid-template-columns: minmax(280px, .9fr) 1.1fr;
+
+            gap: 42px;
+
+            align-items: center;
+        }
+
+        .nasa-photo {
+            width: 100%;
+            height: 520px;
+
+            object-fit: cover;
+            object-position: center;
+
+            border-radius: 24px;
+
+            box-shadow: var(--shadow);
+
+            border: 7px solid white;
+        }
+
+        .nasa-content h2 {
+            font-size: 2.3rem;
+            margin-bottom: 8px;
+        }
+
+        .nasa-content h3 {
+            font-size: 1.35rem;
+            margin-bottom: 5px;
+        }
+
+        .nasa-location {
+            color: #8c77ad;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+        }
+
+        .nasa-content p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .highlight {
+            margin-top: 22px;
+
+            padding: 17px 20px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                90deg,
+                rgba(246,169,215,.18),
+                rgba(156,207,255,.18),
+                rgba(168,234,215,.18)
+            );
+
+            font-weight: 650;
+        }
+
+
+        /* ================================
+           EDUCATION / SKILLS
+        ================================= */
+
+        .two-column {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .education-item + .education-item {
+            margin-top: 24px;
+        }
+
+        .education-item h3 {
+            margin-bottom: 4px;
+        }
+
+        .education-item p {
+            color: var(--muted);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 8px 13px;
+
+            border-radius: 100px;
+
+            background: linear-gradient(
+                90deg,
+                rgba(246,169,215,.18),
+                rgba(197,166,255,.18),
+                rgba(156,207,255,.18)
+            );
+
+            border: 1px solid #e3dff1;
+
             font-size: .9rem;
-            margin-top: 15px;
+            font-weight: 650;
+        }
+
+
+        /* ================================
+           CONTACT
+        ================================= */
+
+        .contact {
+            text-align: center;
+
+            background: linear-gradient(
+                120deg,
+                rgba(246,169,215,.18),
+                rgba(197,166,255,.18),
+                rgba(156,207,255,.18),
+                rgba(168,234,215,.18),
+                rgba(255,231,154,.18)
+            );
+
+            border: 1px solid var(--border);
+            border-radius: 26px;
+
+            margin-bottom: 80px;
+        }
+
+        .contact p {
+            color: var(--muted);
+
+            max-width: 650px;
+
+            margin: 10px auto 0;
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            color: #8b949e;
-            border-top: 1px solid #30363d;
+
+            padding: 35px;
+
+            border-top: 1px solid #eeeaf5;
+
+            color: #8a8795;
+
+            font-size: .9rem;
         }
 
-        @media (max-width: 650px) {
-            nav .links {
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
                 display: none;
             }
 
             .hero {
-                padding: 60px 8%;
+                min-height: auto;
+                padding-top: 80px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .project-grid,
+            .two-column,
+            .nasa-section {
+                grid-template-columns: 1fr;
+            }
+
+            .nasa-photo {
+                height: 470px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-<nav>
-    <h2>Haley Sapp</h2>
 
-    <div class="links">
-        <a href="#about">About</a>
+<!-- ================================
+     NAVIGATION
+================================= -->
+
+<nav>
+
+    <a class="logo rainbow-text" href="#home">
+        Haley Sapp
+    </a>
+
+    <div class="nav-links">
         <a href="#projects">Projects</a>
+        <a href="#nasa">NASA</a>
         <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </div>
+
 </nav>
 
-<main>
 
-    <div class="hero">
-        <p class="intro">Hi, my name is</p>
 
-        <h1>Haley Sapp.</h1>
+<!-- ================================
+     HERO
+================================= -->
 
-        <h2>I build software and intelligent systems.</h2>
+<header class="hero" id="home">
 
-        <p class="description">
-            Computer Science student specializing in Artificial Intelligence,
-            with interests in machine learning, computer vision, data science,
-            and software development.
+    <div class="hero-content">
+
+        <span class="eyebrow">
+            Computer Science • Artificial Intelligence
+        </span>
+
+        <h1 class="rainbow-text">
+            Haley Sapp
+        </h1>
+
+        <h2>
+            AI • Computer Vision • Software Development
+        </h2>
+
+        <p class="hero-description">
+            Computer Science student at the University of North Carolina
+            Wilmington specializing in Artificial Intelligence. I enjoy
+            building practical software, exploring machine learning and
+            computer vision, and turning ideas into real-world applications.
         </p>
 
-        <div>
-            <a class="button" href="#projects">View My Projects</a>
-            <a class="button" href="https://github.com/HaleySapp">GitHub</a>
+        <div class="buttons">
+
+            <a class="button button-primary" href="#projects">
+                Explore My Work
+            </a>
+
+            <a class="button"
+               href="https://github.com/HaleySapp"
+               target="_blank">
+                GitHub
+            </a>
+
+            <!--
+            ADD RESUME LATER:
+
+            <a class="button"
+               href="Haley-Sapp-Resume.pdf"
+               target="_blank">
+                Resume
+            </a>
+            -->
+
         </div>
+
     </div>
 
-
-    <section id="about">
-        <h2>About Me</h2>
-
-        <p>
-            I'm a Computer Science student at the University of North Carolina
-            Wilmington concentrating in Artificial Intelligence. I enjoy
-            developing practical software and applying machine learning to
-            real-world problems.
-        </p>
-    </section>
+</header>
 
 
-    <section id="projects">
 
-        <h2>Featured Projects</h2>
+<!-- ================================
+     PROJECTS
+================================= -->
 
-        <div class="projects">
+<section id="projects">
 
-            <div class="project">
-                <h3>🌀 Hurricane Eye Detection & Tracking</h3>
+    <h2 class="section-title">
+        ✨ Featured Projects
+    </h2>
 
-                <p>
-                    Honors research project developing an automated system for
-                    detecting and tracking hurricane eyes from GOES satellite
-                    imagery.
-                </p>
+    <p class="section-subtitle">
+        A selection of my work in artificial intelligence,
+        computer vision, software development, and mobile applications.
+    </p>
 
-                <p class="tech">
-                    Python • YOLO • Computer Vision • GOES • PySide6
-                </p>
+
+    <div class="project-grid">
+
+
+        <!-- HURRICANE PROJECT -->
+
+        <article class="card hurricane">
+
+            <div class="project-icon">🌀</div>
+
+            <h3>
+                Hurricane Eye Detection & Tracking
+            </h3>
+
+            <p>
+                Honors research project developing an automated system
+                for detecting and tracking hurricane eyes in GOES
+                satellite imagery. The project combines object detection,
+                temporal tracking, cloud-motion analysis, and a desktop
+                interface for exploring storm imagery and results.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">GOES</span>
+                <span class="tag">PySide6</span>
+                <span class="tag">Optical Flow</span>
             </div>
 
+            <div class="project-actions">
 
-            <div class="project">
-                <h3>🎴 MirrorStat TCG</h3>
+                <!-- Replace with YouTube link later -->
+                <span class="coming-soon">
+                    🎥 Demo Coming Soon
+                </span>
 
-                <p>
-                    An iPhone and iPad application for tracking card statistics,
-                    effects, counters, and board state during tabletop card games.
-                </p>
+                <!-- Full source code intentionally not public -->
 
-                <p class="tech">
-                    Swift • SwiftUI • iOS • iPadOS
-                </p>
             </div>
 
+        </article>
 
-            <div class="project">
-                <h3>✍️ MagicLetters</h3>
 
-                <p>
-                    An interactive handwriting and letter-learning application
-                    designed for touch-based learning on iPhone and iPad.
-                </p>
 
-                <p class="tech">
-                    Swift • SwiftUI • Touch Interaction • iOS
-                </p>
+        <!-- CHATBOT -->
+
+        <article class="card chatbot">
+
+            <div class="project-icon">🤖</div>
+
+            <h3>
+                Hurricane Safety AI Chatbot
+            </h3>
+
+            <p>
+                AI-powered disaster guidance chatbot designed to provide
+                clear and actionable hurricane preparedness information.
+                The project explored knowledge-base design, retrieval,
+                prompt engineering, local information, and response
+                evaluation across realistic hurricane scenarios.
+            </p>
+
+            <div class="tags">
+                <span class="tag">LM Studio</span>
+                <span class="tag">LLMs</span>
+                <span class="tag">RAG</span>
+                <span class="tag">Prompt Engineering</span>
+                <span class="tag">Knowledge Bases</span>
+            </div>
+
+            <div class="project-actions">
+
+                <!-- Replace this with YouTube link later -->
+                <span class="coming-soon">
+                    🎥 5-Minute Demo Coming Soon
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- MIRRORSTAT -->
+
+        <article class="card mirrorstat">
+
+            <div class="project-icon">🎴</div>
+
+            <h3>
+                MirrorStat TCG
+            </h3>
+
+            <p>
+                An iPhone and iPad companion app for tracking card
+                statistics, effects, values, and game state during
+                tabletop trading card games. Designed around fast,
+                customizable in-game interaction.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Swift</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag">iOS</span>
+                <span class="tag">iPadOS</span>
+                <span class="tag">StoreKit 2</span>
+            </div>
+
+            <div class="project-actions">
+
+                <!-- Replace with App Store link after release -->
+                <span class="coming-soon">
+                     App Store — Coming Soon
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- MAGICLETTERS -->
+
+        <article class="card magicletters">
+
+            <div class="project-icon">✍️</div>
+
+            <h3>
+                MagicLetters
+            </h3>
+
+            <p>
+                Interactive letter-learning application that uses
+                hand and finger interaction to help children practice
+                tracing letters in an engaging visual environment.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Swift</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag">Vision</span>
+                <span class="tag">iPhone</span>
+                <span class="tag">iPad</span>
+            </div>
+
+            <div class="project-actions">
+
+                <!-- Replace with App Store link later -->
+                <span class="coming-soon">
+                     App Store — Coming Soon
+                </span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================
+     NASA EXPERIENCE
+================================= -->
+
+<section id="nasa">
+
+    <div class="nasa-section">
+
+
+        <!--
+        IMPORTANT:
+
+        Upload your NASA image into the SAME GitHub repository
+        and name it:
+
+        nasa-haley.jpg
+
+        Then this image will automatically appear.
+        -->
+
+        <img
+            class="nasa-photo"
+            src="nasa-haley.jpg"
+            alt="Haley Sapp at a NASA event">
+
+
+        <div class="nasa-content">
+
+            <h2>🚀 NASA Experience</h2>
+
+            <h3>
+                NASA Community College Aerospace Scholars
+            </h3>
+
+            <p class="nasa-location">
+                NASA Armstrong Flight Research Center
+                • 2023–2024
+            </p>
+
+            <p>
+                Completed NASA Community College Aerospace Scholars
+                Missions 1 and 2 and was selected as one of 100
+                students nationwide to participate in Mission 3.
+            </p>
+
+            <p>
+                Collaborated on aerospace technology concepts involving
+                eVTOL aircraft and contributed to work involving
+                battery management, aerodynamics, and flight-control
+                systems.
+            </p>
+
+            <div class="highlight">
+                Selected as one of 100 students nationwide
+                for NASA NCAS Mission 3. 🚀
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <section id="education">
 
-        <h2>Education & Experience</h2>
+<!-- ================================
+     EDUCATION
+================================= -->
 
-        <p>
-            <strong>University of North Carolina Wilmington</strong><br>
-            Bachelor of Science in Computer Science — Artificial Intelligence Concentration
-        </p>
+<section id="education">
 
-        <br>
-
-        <p>
-            <strong>NASA Community College Aerospace Scholars (NCAS)</strong><br>
-            Alumna — Missions 1–3
-        </p>
-
-    </section>
+    <h2 class="section-title">
+        🎓 Education
+    </h2>
 
 
-    <section id="contact">
+    <div class="two-column">
 
-        <h2>Let's Connect</h2>
 
-        <p>
-            I'm interested in opportunities in artificial intelligence,
-            data, machine learning, and software development.
-        </p>
+        <div class="card">
 
-        <a class="button" href="https://github.com/HaleySapp">
-            View GitHub
+            <div class="education-item">
+
+                <h3>
+                    University of North Carolina Wilmington
+                </h3>
+
+                <p>
+                    Bachelor of Science in Computer Science
+                </p>
+
+                <p>
+                    Artificial Intelligence Specialization
+                </p>
+
+                <p>
+                    Expected December 2026
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="education-item">
+
+                <h3>
+                    Forsyth Technical Community College
+                </h3>
+
+                <p>
+                    Associate of Science
+                </p>
+
+                <p>
+                    Completed May 2024
+                </p>
+
+                <p>
+                    Phi Theta Kappa
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================
+     SKILLS
+================================= -->
+
+<section id="skills">
+
+    <h2 class="section-title">
+        💻 Technical Skills
+    </h2>
+
+    <p class="section-subtitle">
+        Technologies and areas I've worked with through
+        coursework, research, and independent software projects.
+    </p>
+
+
+    <div class="card">
+
+        <div class="skills">
+
+            <span class="skill">Python</span>
+            <span class="skill">Java</span>
+            <span class="skill">C++</span>
+            <span class="skill">Swift</span>
+            <span class="skill">SwiftUI</span>
+
+            <span class="skill">HTML</span>
+            <span class="skill">SQL</span>
+
+            <span class="skill">Machine Learning</span>
+            <span class="skill">Computer Vision</span>
+            <span class="skill">YOLO</span>
+            <span class="skill">OpenCV</span>
+
+            <span class="skill">NumPy</span>
+            <span class="skill">Pandas</span>
+            <span class="skill">Matplotlib</span>
+
+            <span class="skill">PySide6 / Qt</span>
+
+            <span class="skill">LLMs</span>
+            <span class="skill">RAG</span>
+            <span class="skill">Prompt Engineering</span>
+
+            <span class="skill">Git</span>
+            <span class="skill">GitHub</span>
+
+            <span class="skill">iOS / iPadOS Development</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================
+     CONTACT
+================================= -->
+
+<section id="contact" class="contact">
+
+    <h2 class="section-title">
+        Let's Connect 🌈
+    </h2>
+
+    <p>
+        I'm interested in opportunities involving artificial
+        intelligence, machine learning, data, computer vision,
+        and software development.
+    </p>
+
+
+    <div class="buttons"
+         style="justify-content:center;">
+
+
+        <a
+            class="button button-primary"
+            href="mailto:HaleySapp3@gmail.com">
+
+            Email Me
+
         </a>
 
-    </section>
 
-</main>
+        <a
+            class="button"
+            href="https://github.com/HaleySapp"
+            target="_blank">
+
+            GitHub
+
+        </a>
+
+
+        <a
+            class="button"
+            href="https://www.linkedin.com/in/haley1sapp"
+            target="_blank">
+
+            LinkedIn
+
+        </a>
+
+
+    </div>
+
+</section>
+
 
 
 <footer>
-    © 2026 Haley Sapp
+
+    © 2026 Haley Sapp • Built with HTML & CSS
+
 </footer>
+
 
 </body>
 </html>
